@@ -1,0 +1,16 @@
+create database newCOMPANY;
+use newCOMPANY;
+create table regions(region_id varchar(15) NOT NULL,region_name varchar(25),primary key(region_id));
+create table countries(country_id varchar(15)NOT NULL,country_name varchar(30),region_id varchar(15),primary key(country_id),foreign key(region_id)references regions(region_id));
+create table locations(location_id varchar(15)NOT NULL,street_address varchar(30),postal_code varchar(15),city varchar(15),state_province varchar(15),country_id varchar(15),primary key(location_id),foreign key(country_id)references countries(country_id));
+create table departments(department_id varchar(15)NOT NULL,department_name varchar(15),location_id varchar(15),primary key(department_id),foreign key(location_id)references locations(location_id));
+create table jobs(job_id varchar(15)NOT NULL,job_title varchar(15),min_salary int,max_salary int,primary key(job_id));
+create table employees(employee_id varchar(20)NOT NULL,first_name varchar(15),last_nmae varchar(25),email varchar(20),phone_number int,hire_date date,job_id varchar(15),salary int,manager_id varchar(15),department_id varchar(15),primary key(employee_id),foreign key(department_id)references departments(department_id),foreign key(manager_id)references employees(employee_id));
+create table dependents(dependent_id varchar(15)NOT NULL,first_name varchar(15),last_name varchar(15),relationship varchar(15),employee_id varchar(15),primary key(dependent_id),foreign key(employee_id)references employees(employee_id));
+desc departments;
+desc employees;
+desc dependents;
+desc jobs;
+desc locations;
+desc countries;
+desc regions;
