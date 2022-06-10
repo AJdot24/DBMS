@@ -1,0 +1,6 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_product`(IN id int,IN pname varchar(20),IN price varchar(20),IN quandity varchar(20))
+begin
+if(price>0 && quandity >=0) then
+insert into product values(id,pname,price,quandity);
+end if;
+end
